@@ -1,0 +1,12 @@
+require('utils')
+require('male')
+require('female')
+
+local xman = ClassList.Male.new()
+local fman = ClassList.Female.new()
+print(xman, '\n')
+print(fman, '\n\n')
+print(xman.super, '\n')
+print(fman.super, '\n\n')
+print(getmetatable(xman), '\n')
+print(getmetatable(fman), '\n\n')
