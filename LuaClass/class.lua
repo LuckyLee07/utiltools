@@ -1,15 +1,15 @@
 --生成类的方法
 ClassList = {}
 
-function Class(className,super)
+function Class(clsname, super)
     local curClass = {}
-    curClass.className = className
-    curClass.type = "class"
     curClass.super = super
+    curClass.__type__ = "class"
+    curClass.__cls__ = clsname
 	
 	local _info = debug.getinfo(2, "S");
-    local _path = string.sub(_info.source, 2, -1);
-	curClass.___classPath___ = _path;
+    local __path = string.sub(_info.source, 2, -1);
+	curClass.__path__ = __path;
 	
     local function getInstance(param)
         local instance = {}
@@ -42,7 +42,21 @@ function Class(className,super)
         return getInstance(param)
     end
 
-    ClassList[curClass.className] = curClass
+    ClassList[curClass.__cls__] = curClass
 
     return curClass
 end
+
+
+--获取单例类实例
+function GetInst(clsname)
+    if clsname == nil then
+        print("======GetInst nil =======")
+        return nil
+    end
+    if ClassList[clsname] == nil then
+        return  nil
+    end     
+    return ClassList[clsname]:GetInst()
+end
+
