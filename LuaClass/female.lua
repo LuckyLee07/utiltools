@@ -9,3 +9,7 @@ end
 function Female:GetSex()
 	return self.male
 end
+
+function Female:Desc()
+	print(self.name .. ' is female')
+end
